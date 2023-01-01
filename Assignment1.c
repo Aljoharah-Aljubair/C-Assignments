@@ -3,24 +3,34 @@
 #define SIZE  100
 
 void reverse_string( char* str){
-   int length= strlen(str);
-   char temp;
-   for(int i = 0 ; i < length/2 ; i++){
-      temp = str[i];
-      str[i]=str[length-i-1];
-      str[length-i-1]=temp;
+   
+   int length= strlen(str);//length of the string
+   char* left = str;//index of the first element (most left)
+   char* right = str + length - 1;//index of the last element (most right)
+  
+   while(left<right){ //swap
+   
+      char temp = *left;
+      *left = *right;
+      *right = temp;
+      
+      left++; right--; //to move the pointer
    }
 }
   
 int main(){
-   char str[SIZE]="";
+
+   char str[SIZE]="\0";
    char ch;
-   int indx=0;
+   int index=0;
+   
    printf("enter string:\n");
+
    while(ch!='\n'){
       scanf("%c",&ch);
-      str[indx++]=ch;
+      str[index++]=ch;
    }
+   
    reverse_string(str);
    printf("string in reverse order:%s",str);
    return 0 ;
